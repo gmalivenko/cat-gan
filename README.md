@@ -16,6 +16,8 @@ pip install -r requirements.txt
 python train.py --config config/train.yml
 ```
 
+For the PyTorch installation, please follow [this guide](http://pytorch.org)
+
 # Reference
 Inspired by https://arxiv.org/abs/1406.2661
 
