@@ -1,0 +1,37 @@
+visdom:
+  use_visdom: True
+  image_size: 128
+  server: "http://172.17.0.1"
+  port: 8089
+
+train:
+  epochs: 100000
+  batch_size: 2
+  use_cuda: True
+  image_size: 128
+  d_learning_rate: 0.00005
+  g_learning_rate: 0.0001
+
+network:
+  generator:
+    image_size: 128
+    z_size: 3
+    G_h_size: 96
+    n_colors: 3
+
+dataset:
+  image_size: 128
+  root_dir: "data/cats_bigger_than_128x128/*.jpg"
+  brightness: 0.2
+  contrast: 0.2
+  saturation: 0.2
+  hue: 0.2
+
+restore:
+  D: False
+  G: False
+
+save:
+  every: 500
+  D: "last.D.pth"
+  G: "last.G.pth"
