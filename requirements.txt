@@ -1,0 +1,4 @@
+visdom
+attrdict
+PyYAML
+PIL
