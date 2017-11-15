@@ -1,10 +1,13 @@
 # Cat GAN
 
 This is the GAN implementation of cats generator.
+
 The output on 5k iteration (for default configuration):
 ![2017-11-15 21-42-34](https://user-images.githubusercontent.com/3521007/32853968-22e3659c-ca4e-11e7-9eeb-c04663f33388.png)
-5 Minute after:
+5 minute after:
 ![2017-11-15 21-47-37](https://user-images.githubusercontent.com/3521007/32854134-b179687e-ca4e-11e7-81cd-eaf52ecc71fb.png)
+2 hours after:
+![2017-11-16 00-07-49](https://user-images.githubusercontent.com/3521007/32860436-a795ea62-ca62-11e7-979f-a65512605dbe.png)
 
 # Installation
 ```
