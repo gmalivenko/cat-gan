@@ -26,6 +26,9 @@ def test(params):
     np_cat = torch_cat.data.numpy()[0] / 2.0 + 0.5
     np_cat = np_cat.transpose((1, 2, 0))
 
+    fig = plt.gcf()
+    fig.canvas.set_window_title('Random cat')
+
     plt.imshow(np_cat)
     plt.show()
 
