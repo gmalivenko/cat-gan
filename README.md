@@ -13,15 +13,16 @@ The output on 5k iteration (for default configuration):
 ```
 pip install -r requirements.txt
 ```
+For the PyTorch installation, please follow [this guide](http://pytorch.org)
 
 # Training
+To run the training script, make changes in the configuration (example is config/train.yml).
+
 ```
 python train.py --config config/train.yml
 ```
 
-For the PyTorch installation, please follow [this guide](http://pytorch.org)
-
-# Reference
+# References
 Inspired by https://arxiv.org/abs/1406.2661
 
 # License
