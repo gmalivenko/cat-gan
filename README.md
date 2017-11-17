@@ -40,6 +40,17 @@ To run the training script, make changes in the configuration (example is config
 python train.py --config config/train.yml
 ```
 
+## Testing
+To get radom cat (fill restore.generator in config/train.yml):
+
+```
+python test.py --config config/train.yml
+```
+
+![2017-11-18 01-18-30](https://user-images.githubusercontent.com/3521007/32971483-76116488-cbfe-11e7-8271-4c85241d573d.png)
+![2017-11-18 01-18-49](https://user-images.githubusercontent.com/3521007/32971485-76475908-cbfe-11e7-84ff-68bae185d8c9.png)
+
+
 ## References
 Inspired by https://arxiv.org/abs/1406.2661
 
