@@ -13,7 +13,7 @@ ConvTranspose2d -> SELU -> [ConvTranspose2d -> SELU] x N -> ConvTranspose2d -> T
 
 ### Discriminator
 
-A ResNet-18 with single-neuron output seems capatible for this project.
+A ResNet-18 with single-neuron output seems compatible for this project.
 
 The generator has very custom but straightforward architecure.
 ConvTranspose2d -> SELU -> [ConvTranspose2d -> SELU] x N -> ConvTranspose2d -> Tanh
@@ -31,10 +31,10 @@ The output on 5k iteration (for default configuration):
 ```
 pip install -r requirements.txt
 ```
-For the PyTorch installation, please follow [this guide](http://pytorch.org)
+For the PyTorch installation, please follow [this guide](http://pytorch.org).
 
 ## Training
-To run the training script, make changes in the configuration (example is config/train.yml).
+To run the training script, make changes in the configuration (example is in config/train.yml).
 
 ```
 python train.py --config config/train.yml
