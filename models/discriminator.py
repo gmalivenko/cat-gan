@@ -136,14 +136,13 @@ class ResNet(nn.Module):
         x = self.avgpool(x)
         
         x = x.view(x.size(0), -1)
-        # print(x.size())
         x = self.fc(x)
         x = x.view(-1)
-        # print(x.size())
+
         return F.sigmoid(x)
 
 
 def discriminator():
-    """Constructs a ResNet-18 model."""
-    model = ResNet(BasicBlock, [2, 2, 2, 2])
+    """Constructs a ResNet-50 model."""
+    model = ResNet(Bottleneck, [2, 3, 4, 2])
     return model

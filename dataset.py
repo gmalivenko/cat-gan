@@ -16,7 +16,7 @@ class CatsDataset(Dataset):
         self.images = glob(params.root_dir)
         print(transforms)
         self.transform = transforms.Compose([
-            transforms.Scale(params.image_size),
+            transforms.Resize(params.image_size),
             transforms.RandomCrop(params.image_size),
             transforms.RandomHorizontalFlip(),
             transforms.ColorJitter(

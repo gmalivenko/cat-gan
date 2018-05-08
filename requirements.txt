@@ -1,4 +1,4 @@
 visdom
 attrdict
 PyYAML
-PIL
+pillow

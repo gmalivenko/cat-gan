@@ -13,6 +13,16 @@ from models.discriminator import discriminator
 from dataset import CatsDataset
 
 
+def weights_init(m):
+    classname = m.__class__.__name__
+    if classname.find('Conv') != -1:
+        m.weight.data.normal_(0.0, 0.02)
+    elif classname.find('BatchNorm') != -1:
+        m.weight.data.normal_(1.0, 0.02)
+        m.bias.data.fill_(0)
+    return
+
+
 def train(params):
     if params.visdom.use_visdom:
         import visdom
@@ -41,7 +51,7 @@ def train(params):
             X=torch.zeros((1,)).cpu(),
             Y=torch.zeros((1,)).cpu(),
             opts=dict(
-                xlabel='Epoch',
+                xlabel='Iteration',
                 ylabel='Loss',
                 title='D Training Loss',
             )
@@ -49,7 +59,9 @@ def train(params):
 
     G = Generator(params.network.generator)
     D = discriminator()
-
+    G.apply(weights_init)
+    D.apply(weights_init)
+    
     if params.restore.G:
         G.load_state_dict(torch.load(params.restore.G))
 
@@ -95,6 +107,7 @@ def train(params):
             d_real_error = criterion(d_real_decision, t_ones)  # ones = true
             d_real_error.backward()
             # compute/store gradients, but don't change params
+            d_optimizer.step()
 
             #  1B: Train D on fake
             d_gen_input = \
@@ -113,13 +126,14 @@ def train(params):
             d_fake_error.backward()
 
             loss = d_fake_error + d_real_error
+            np_loss = loss.cpu().data.numpy()
 
             # Only optimizes D's parameters;
             # changes based on stored gradients from backward()
             d_optimizer.step()
 
         for p in D.parameters():
-            p.requires_grad = True
+            p.requires_grad = False
 
         for g_index in range(g_steps):
             # 2. Train G on D's response (but DO NOT train D on these labels)
@@ -144,7 +158,7 @@ def train(params):
         if epoch % 10 == 0 and params.visdom.use_visdom:
             vis.line(
                 X=np.array([epoch]),
-                Y=np.array([np.average(loss.cpu().data.numpy(), axis=0)]),
+                Y=np.array([np_loss]),
                 win=d_loss,
                 update='append'
             )
@@ -161,7 +175,7 @@ def train(params):
 
             vis.line(
                 X=np.array([epoch]),
-                Y=np.array([np.average(g_error.cpu().data.numpy(), axis=0)]),
+                Y=np.array([g_error.cpu().data.numpy()]),
                 win=g_loss,
                 update='append'
             )
